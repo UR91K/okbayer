@@ -14,6 +14,12 @@ let dithered = ditherclamp::dither_bayer_oklab(
 )?;
 ```
 
+## Example Output
+
+Original | Dithered
+--- | ---
+![Original dog](images/dog_small.png) | ![Dithered dog](images/dithered_dog_small.png)
+
 ## Input/Output Format
 
 - **Image**: `&[u8]` — RGB8 pixels, flat array. Length must be `width × height × 3`
