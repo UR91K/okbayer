@@ -33,7 +33,7 @@ Returns `Result<Vec<u8>, DitherError>`:
 - `InvalidImageBufferSize` - image length not divisible by 3
 - `InvalidPaletteBufferSize` - palette length not divisible by 3
 - `EmptyPalette` - palette is empty
-- `DimensionMismatch { expected, actual }` - image length doesn't match `width × height × 3`
+- `DimensionMismatch { expected, actual }` - image length doesn't match `width*height*3`
 
 ## License
 
