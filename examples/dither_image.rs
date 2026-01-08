@@ -102,18 +102,13 @@ fn main() {
     dithered_image.save("images/dithered_flower_0.0.png").unwrap();
 
     // imagequant
-    let palettes: Vec<Vec<u8>> = vec![
-        palette_from_image(image_bytes.to_vec(), width, height, 2),
-        palette_from_image(image_bytes.to_vec(), width, height, 9),
-        palette_from_image(image_bytes.to_vec(), width, height, 10),
-        palette_from_image(image_bytes.to_vec(), width, height, 16),
-        palette_from_image(image_bytes.to_vec(), width, height, 32),
-        palette_from_image(image_bytes.to_vec(), width, height, 256),
-    ];
+
+    let palette_sizes = vec![2, 9, 10, 16, 32, 256];
+    let palettes: Vec<Vec<u8>> = palette_sizes.iter().map(|size| palette_from_image(image_bytes.to_vec(), width, height, *size)).collect();
     for (i, palette) in palettes.iter().enumerate() {
         let dithered_bytes = dither_bayer_oklab(&image_bytes, &palette, width, height, 1.0).unwrap();
         let dithered_image = image::RgbImage::from_raw(width, height, dithered_bytes).unwrap();
-        dithered_image.save(&format!("images/dithered_flower_1.0_{}_imagequant.png", i)).unwrap();
+        dithered_image.save(&format!("images/dithered_flower_1.0_{}_imagequant.png", palette_sizes[i])).unwrap();
     }
 
 }
